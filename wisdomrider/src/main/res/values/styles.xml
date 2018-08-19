@@ -1,0 +1,11 @@
+<resources>
+    <style name="dialog" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <!--buttons color-->
+        <item name="colorAccent">@color/DeepPink</item>
+        <!--title and message color-->
+        <item name="android:textColorPrimary">@android:color/black</item>
+        <!--dialog background-->
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+</resources>
