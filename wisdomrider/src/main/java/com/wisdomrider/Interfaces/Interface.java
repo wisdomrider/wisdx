@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -22,6 +23,8 @@ public interface Interface {
     WisdomRider toast(String s);
 
     TextView textView(int id);
+
+    Button button(int id);
 
     EditText editText(int id);
 
@@ -42,6 +45,8 @@ public interface Interface {
     SqliteClosedHelper initSqliteClosedHelper(String database_name);
 
     WisdomRider initEncryption(String secretkey, String algorithmkey);
+
+    long getLongSharedPreference(String title);
 
     String encrypt(String textToEncrypt);
 

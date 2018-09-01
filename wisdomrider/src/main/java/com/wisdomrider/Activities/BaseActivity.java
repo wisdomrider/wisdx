@@ -16,4 +16,5 @@ public class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         wisdom=new WisdomRider(this);
      }
+     
 }

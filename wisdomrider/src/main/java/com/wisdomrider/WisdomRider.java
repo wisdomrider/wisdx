@@ -10,6 +10,7 @@ import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,6 +24,8 @@ import com.wisdomrider.Interfaces.Interface;
 import com.wisdomrider.Interfaces.Pass;
 import com.wisdomrider.sqliteclosedhelper.SqliteClosedHelper;
 
+import java.util.HashMap;
+
 /*
 CREated by avi(Wisdomrider)
 on 8/19/2018
@@ -30,11 +33,13 @@ on 8/19/2018
 public class WisdomRider implements Interface {
     public Context context;
     public Activity activity;
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor edit;
+    public SharedPreferences sharedPreferences;
+    public SharedPreferences.Editor edit;
     public BroadcastReceiver mReceiver;
     public SqliteClosedHelper sqliteClosedHelper;
     Encryption encryption;
+    public HashMap<String,Object> objectHashMap=new HashMap<>();
+    public HashMap<String,String> stringHashMap=new HashMap<>();
 
     public WisdomRider(Context c) {
         context = c;
@@ -55,6 +60,11 @@ public class WisdomRider implements Interface {
 
     @Override
     public TextView textView(int id) {
+        return activity.findViewById(id);
+    }
+
+    @Override
+    public Button button(int id) {
         return activity.findViewById(id);
     }
 
@@ -154,6 +164,12 @@ public class WisdomRider implements Interface {
     }
 
     @Override
+    public long getLongSharedPreference(String title) {
+        return sharedPreferences.getLong(title,0);
+        //default is 0
+    }
+
+    @Override
     public String encrypt(String textToEncrypt) {
         try {
             byte[] b = encryption.encrypt(textToEncrypt);
@@ -190,8 +206,12 @@ public class WisdomRider implements Interface {
             edit.putInt(title, (Integer) data);
         } else if (data instanceof Boolean) {
             edit.putInt(title, (Integer) data);
-        } else {
-            throw new Error("Data is not integer,string or boolean");
+        }
+        else if(data instanceof Long){
+            edit.putLong(title,(long)data);
+        }
+        else {
+            throw new Error("Data is not integer,string or boolean,long");
         }
         edit.apply();
         edit.clear();
