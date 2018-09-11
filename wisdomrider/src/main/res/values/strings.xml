@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">WisdomRider</string>
+ <string name="WisdomVersion">2.6</string>
+
 </resources>
