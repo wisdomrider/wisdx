@@ -94,7 +94,7 @@ public class WisdomRider implements Interface {
     }
 
     public AlertDialog alertDialog(String text, final Pass positive, final Pass negative, boolean cancelable) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(activity, R.style.dialog);
+        AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setMessage(Html.fromHtml(text));
         if (positive != null) {
             String positiveText = positive.value();
