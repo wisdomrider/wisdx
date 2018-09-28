@@ -9,6 +9,7 @@ import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -38,8 +39,8 @@ public class WisdomRider implements Interface {
     public BroadcastReceiver mReceiver;
     public SqliteClosedHelper sqliteClosedHelper;
     Encryption encryption;
-    public HashMap<String,Object> objectHashMap=new HashMap<>();
-    public HashMap<String,String> stringHashMap=new HashMap<>();
+    public HashMap<String, Object> objectHashMap = new HashMap<>();
+    public HashMap<String, String> stringHashMap = new HashMap<>();
 
     public WisdomRider(Context c) {
         context = c;
@@ -165,7 +166,7 @@ public class WisdomRider implements Interface {
 
     @Override
     public long getLongSharedPreference(String title) {
-        return sharedPreferences.getLong(title,0);
+        return sharedPreferences.getLong(title, 0);
         //default is 0
     }
 
@@ -175,7 +176,7 @@ public class WisdomRider implements Interface {
             byte[] b = encryption.encrypt(textToEncrypt);
             return Encryption.bytesToHex(b);
         } catch (Exception e) {
-            toast(e.getMessage());
+            Log.e("ERR", e.getMessage());
         }
         return "";
     }
@@ -206,11 +207,9 @@ public class WisdomRider implements Interface {
             edit.putInt(title, (Integer) data);
         } else if (data instanceof Boolean) {
             edit.putInt(title, (Integer) data);
-        }
-        else if(data instanceof Long){
-            edit.putLong(title,(long)data);
-        }
-        else {
+        } else if (data instanceof Long) {
+            edit.putLong(title, (long) data);
+        } else {
             throw new Error("Data is not integer,string or boolean,long");
         }
         edit.apply();
@@ -229,19 +228,19 @@ public class WisdomRider implements Interface {
     @Override
     public String getStringSharedPreference(String title) {
 
-        return sharedPreferences.getString(title,"");
+        return sharedPreferences.getString(title, "");
         //default value is empty
     }
 
     @Override
     public int getIntSharedPreference(String title) {
-        return sharedPreferences.getInt(title,0);
+        return sharedPreferences.getInt(title, 0);
         //default is 0
     }
 
     @Override
     public boolean getBooleanSharedPreference(String title) {
-        return sharedPreferences.getBoolean(title,false);
+        return sharedPreferences.getBoolean(title, false);
         //default is false
     }
 

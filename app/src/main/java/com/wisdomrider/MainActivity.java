@@ -21,10 +21,6 @@ public class MainActivity extends BaseActivity {
         preferences.putLong("avishek3",70);
         preferences.putBoolean("avishek4",true);
         preferences.apply();
-        Log.e("ERR",preferences.getString("avishek1",""));
-        Log.e("ERR",""+preferences.getInt("avishek2",0));
-        Log.e("ERR",""+preferences.getLong("avishek3",0));
-        Log.e("ERR",""+preferences.getBoolean("avishek4",false));
 
     }
 
