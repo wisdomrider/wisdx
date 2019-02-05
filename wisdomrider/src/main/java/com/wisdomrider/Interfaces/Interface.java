@@ -31,6 +31,8 @@ public interface Interface {
 
     Spinner spinner(int id);
 
+    Object object(int id);
+
     ImageView imageView(int id);
 
     ProgressBar progressBar(int id);

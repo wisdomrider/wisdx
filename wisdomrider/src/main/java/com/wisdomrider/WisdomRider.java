@@ -50,6 +50,8 @@ public class WisdomRider implements Interface {
     public WisdomRider(Activity c) {
         context = c;
         activity = c;
+
+
     }
 
 
@@ -77,6 +79,11 @@ public class WisdomRider implements Interface {
 
     @Override
     public Spinner spinner(int id) {
+        return activity.findViewById(id);
+    }
+
+    @Override
+    public Object object(int id) {
         return activity.findViewById(id);
     }
 

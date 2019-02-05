@@ -16,7 +16,7 @@ on 9/15/2018
 public class Preferences implements SharedPreferences, SharedPreferences.Editor {
     SharedPreferences preferences;
     Encryption encryption;
-    SharedPreferences.Editor editor;
+    Editor editor;
 
     public Preferences(Context c, String dbname, int mode) {
         preferences = c.getSharedPreferences(dbname, mode);
