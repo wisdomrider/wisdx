@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -71,6 +72,11 @@ public class WisdomRider implements Interface {
 
     @Override
     public EditText editText(int id) {
+        return activity.findViewById(id);
+    }
+
+    @Override
+    public Spinner spinner(int id) {
         return activity.findViewById(id);
     }
 

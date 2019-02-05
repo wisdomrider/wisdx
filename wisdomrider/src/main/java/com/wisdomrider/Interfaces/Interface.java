@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.wisdomrider.WisdomRider;
@@ -27,6 +28,8 @@ public interface Interface {
     Button button(int id);
 
     EditText editText(int id);
+
+    Spinner spinner(int id);
 
     ImageView imageView(int id);
 
