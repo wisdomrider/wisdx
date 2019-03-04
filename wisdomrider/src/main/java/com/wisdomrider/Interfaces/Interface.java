@@ -1,9 +1,8 @@
 package com.wisdomrider.Interfaces;
 
 import android.content.BroadcastReceiver;
-import android.content.SharedPreferences;
+import android.content.Intent;
 import android.support.v7.app.AlertDialog;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -13,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.wisdomrider.Utils.Preferences;
 import com.wisdomrider.WisdomRider;
 import com.wisdomrider.sqliteclosedhelper.SqliteClosedHelper;
 
@@ -43,31 +43,25 @@ public interface Interface {
 
     AlertDialog alertDialog(String text, final Pass positive, final Pass negative, boolean cancelable);
 
-    void sendBroadcast(String text);
+    BroadcastReceiver sendBroadcast(String text);
+
+    BroadcastReceiver sendBroadcast(Intent text);
 
     BroadcastReceiver receiveBroadcast(BroadCast broadCast);
+
+    BroadcastReceiver receiveBroadcast(Receiver broadCast);
 
     SqliteClosedHelper initSqliteClosedHelper(String database_name);
 
     WisdomRider initEncryption(String secretkey, String algorithmkey);
 
-    long getLongSharedPreference(String title);
 
     String encrypt(String textToEncrypt);
 
     String decrypt(String textToDecrypt);
 
-    SharedPreferences initSharedPreference(String dbname);
+    Preferences initSharedPreference(String dbname);
 
-    WisdomRider saveSharedPreference(String title, Object data);
-
-    WisdomRider removeSharedPreference(String title);
-
-    String getStringSharedPreference(String title);
-
-    int getIntSharedPreference(String title);
-
-    boolean getBooleanSharedPreference(String title);
 
 
 }

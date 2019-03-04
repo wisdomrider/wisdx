@@ -6,11 +6,9 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.SharedPreferences;
 import android.support.v7.app.AlertDialog;
 import android.text.Html;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -24,9 +22,11 @@ import android.widget.Toast;
 import com.wisdomrider.Interfaces.BroadCast;
 import com.wisdomrider.Interfaces.Interface;
 import com.wisdomrider.Interfaces.Pass;
+import com.wisdomrider.Interfaces.Receiver;
+import com.wisdomrider.Utils.Preferences;
 import com.wisdomrider.sqliteclosedhelper.SqliteClosedHelper;
 
-import java.util.HashMap;
+import static com.wisdomrider.Utils.Constants.ACTION;
 
 /*
 CREated by avi(Wisdomrider)
@@ -35,13 +35,10 @@ on 8/19/2018
 public class WisdomRider implements Interface {
     public Context context;
     public Activity activity;
-    public SharedPreferences sharedPreferences;
-    public SharedPreferences.Editor edit;
     public BroadcastReceiver mReceiver;
+    Preferences preferences;
     public SqliteClosedHelper sqliteClosedHelper;
     Encryption encryption;
-    public HashMap<String, Object> objectHashMap = new HashMap<>();
-    public HashMap<String, String> stringHashMap = new HashMap<>();
 
     public WisdomRider(Context c) {
         context = c;
@@ -50,8 +47,6 @@ public class WisdomRider implements Interface {
     public WisdomRider(Activity c) {
         context = c;
         activity = c;
-
-
     }
 
 
@@ -137,17 +132,28 @@ public class WisdomRider implements Interface {
     }
 
     public static void sendBroadcast(Context c, String what) {
-        Intent i = new Intent("android.intent.action.MAIN")
-                .putExtra("DATA", what);
+        Intent i = new Intent(ACTION).putExtra("DATA", what);
         c.sendBroadcast(i);
     }
 
-    public void sendBroadcast(String text) {
-        Intent i = new Intent("android.intent.action.MAIN")
-                .putExtra("DATA", text);
-        context.sendBroadcast(i);
+    public static void sendBroadcast(Context c, Intent what) {
+        what.setAction(ACTION);
+        c.sendBroadcast(what);
     }
 
+    public BroadcastReceiver sendBroadcast(String text) {
+        Intent i = new Intent(ACTION).putExtra("DATA", text);
+        context.sendBroadcast(i);
+        return mReceiver;
+    }
+
+    public BroadcastReceiver sendBroadcast(Intent text) {
+        text.setAction(ACTION);
+        context.sendBroadcast(text);
+        return mReceiver;
+    }
+
+    @Override
     public BroadcastReceiver receiveBroadcast(final BroadCast broadCast) {
         IntentFilter intentFilter = new IntentFilter(
                 "android.intent.action.MAIN");
@@ -157,6 +163,23 @@ public class WisdomRider implements Interface {
             public void onReceive(Context context, Intent intent) {
                 String msg_for_me = intent.getStringExtra("DATA").trim();
                 broadCast.thingtoBroadCast(msg_for_me);
+            }
+
+        };
+        activity.registerReceiver(mReceiver, intentFilter);
+        return mReceiver;
+
+    }
+
+    @Override
+    public BroadcastReceiver receiveBroadcast(final Receiver broadCast) {
+        IntentFilter intentFilter = new IntentFilter(
+                "android.intent.action.MAIN");
+        mReceiver = new BroadcastReceiver() {
+
+            @Override
+            public void onReceive(Context context, Intent intent) {
+                broadCast.pass(context, intent);
             }
 
         };
@@ -177,11 +200,6 @@ public class WisdomRider implements Interface {
         return this;
     }
 
-    @Override
-    public long getLongSharedPreference(String title) {
-        return sharedPreferences.getLong(title, 0);
-        //default is 0
-    }
 
     @Override
     public String encrypt(String textToEncrypt) {
@@ -206,55 +224,10 @@ public class WisdomRider implements Interface {
     }
 
     @Override
-    public SharedPreferences initSharedPreference(String dbname) {
-        sharedPreferences = context.getSharedPreferences(dbname, 0);
-        edit = sharedPreferences.edit();
-        return sharedPreferences;
+    public Preferences initSharedPreference(String dbname) {
+        preferences = new Preferences(context, dbname, 0);
+        return preferences;
     }
 
-    @Override
-    public WisdomRider saveSharedPreference(String title, Object data) {
-        if (data instanceof String) {
-            edit.putString(title, (String) data);
-        } else if (data instanceof Integer) {
-            edit.putInt(title, (Integer) data);
-        } else if (data instanceof Boolean) {
-            edit.putInt(title, (Integer) data);
-        } else if (data instanceof Long) {
-            edit.putLong(title, (long) data);
-        } else {
-            throw new Error("Data is not integer,string or boolean,long");
-        }
-        edit.apply();
-        edit.clear();
-        return this;
-    }
-
-    @Override
-    public WisdomRider removeSharedPreference(String title) {
-        edit.remove(title);
-        edit.apply();
-        edit.clear();
-        return this;
-    }
-
-    @Override
-    public String getStringSharedPreference(String title) {
-
-        return sharedPreferences.getString(title, "");
-        //default value is empty
-    }
-
-    @Override
-    public int getIntSharedPreference(String title) {
-        return sharedPreferences.getInt(title, 0);
-        //default is 0
-    }
-
-    @Override
-    public boolean getBooleanSharedPreference(String title) {
-        return sharedPreferences.getBoolean(title, false);
-        //default is false
-    }
 
 }

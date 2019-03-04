@@ -1,29 +1,5 @@
 <resources>
 
-    <style name="MyButton2" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/red_primary_dark</item>
-        <item name="colorButtonNormal">@color/BlueViolet</item>
-    </style>
-
-    <style name="MyButton3" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/red_primary_dark</item>
-        <item name="colorButtonNormal">@color/google_yellow</item>
-    </style>
-
-    <style name="MyButton4" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/orange_primary</item>
-        <item name="colorButtonNormal">@color/violate</item>
-    </style>
-
-    <style name="MyButton5" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">@color/green</item>
-        <item name="colorButtonNormal">@color/red_primary_dark</item>
-    </style>
-
-    <style name="MyButton6" parent="Theme.AppCompat.Light">
-        <item name="colorControlHighlight">#fcf8f8</item>
-        <item name="colorButtonNormal">@color/pink_primary</item>
-    </style>
 
 
 </resources>

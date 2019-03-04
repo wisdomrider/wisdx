@@ -1,4 +1,4 @@
-package com.wisdomrider;
+package com.wisdomrider.Utils;
 
 /*
 CREated by avi(Wisdomrider)

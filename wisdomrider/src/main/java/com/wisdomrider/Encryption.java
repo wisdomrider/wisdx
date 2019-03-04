@@ -10,8 +10,8 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import static com.wisdomrider.ENUM.RANDOM_1;
-import static com.wisdomrider.ENUM.RANDOM_2;
+import static com.wisdomrider.Utils.ENUM.RANDOM_1;
+import static com.wisdomrider.Utils.ENUM.RANDOM_2;
 
 public class Encryption {
 
