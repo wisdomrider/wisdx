@@ -1,10 +1,9 @@
 package com.wisdomrider.Activities;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.wisdomrider.WisdomRider;
-import com.wisdomrider.faldom.Faldom;
 
 /*
 CREated by avi(Wisdomrider)

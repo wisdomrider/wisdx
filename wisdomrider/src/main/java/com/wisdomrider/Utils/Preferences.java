@@ -2,7 +2,7 @@ package com.wisdomrider.Utils;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 
 import com.wisdomrider.Encryption;
 

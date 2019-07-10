@@ -2,7 +2,7 @@ package com.wisdomrider.Interfaces;
 
 import android.content.BroadcastReceiver;
 import android.content.Intent;
-import android.support.v7.app.AlertDialog;
+import androidx.appcompat.app.AlertDialog;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
